@@ -173,7 +173,7 @@ void Basic2DGenericPFlowPositionCalc::calculateAndSetPositionActual(reco::PFClus
     }
 #endif
     cl_energy += rh_energy;
-    // If time resolution is given, calculated weighted average
+    if (refhit.time() > -999) { //-- // If time resolution is given, calculated weighted average
     if (resGiven) {
       double res2 = 1.e-4;
       int cell_layer = (int)refhit.layer();
@@ -186,7 +186,7 @@ void Basic2DGenericPFlowPositionCalc::calculateAndSetPositionActual(reco::PFClus
       cl_timeweight += rh_rawenergy2 * rh_fraction;
       cl_time += rh_rawenergy2 * rh_fraction * refhit.time();
     }
-
+ } else if (cl_timeweight == 0.0) cl_timeweight = 1.0 ;
     if (rh_energy > max_e) {
       max_e = rh_energy;
       max_e_layer = refhit.layer();

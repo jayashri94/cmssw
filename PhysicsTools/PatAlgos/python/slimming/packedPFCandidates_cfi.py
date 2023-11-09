@@ -23,7 +23,7 @@ packedPFCandidates = cms.EDProducer("PATPackedCandidateProducer",
     covariancePackingSchemas = cms.vint32(8,264,520,776,0),   # more accurate schema +0.6kb/ev
     pfCandidateTypesForHcalDepth = cms.vint32(),
     storeHcalDepthEndcapOnly = cms.bool(False), # switch to store info only for endcap
-    storeTiming = cms.bool(False),
+    storeTiming = cms.bool(True), # --  #storeTiming = cms.bool(False),
     timeMap = cms.InputTag(""),
     timeMapErr = cms.InputTag("")
 )

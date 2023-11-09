@@ -3333,9 +3333,9 @@ unsigned PFAlgo::reconstructCluster(const reco::PFCluster& cluster,
 
   // depth info
   setHcalDepthInfo(pfCandidates_->back(), cluster);
-
-  //*TODO* cluster time is not reliable at the moment, so only use track timing
-
+ 
+ if ((cluster.layer() ==1 || cluster.layer() ==3) && (cluster.timeError() >= 0.f)) { //-- //*TODO* cluster time is not reliable at the moment, so only use track timing
+  pfCandidates_->back().setTime(cluster.time(), cluster.timeError()); } //--
   LogTrace("PFAlgo|reconstructCluster") << "** candidate: " << pfCandidates_->back();
 
   // returns index to the newly created PFCandidate
